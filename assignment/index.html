@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div id="intro">
+        <h1>Demolition Overview</h1>
+        <p class="main">Philadelphia hase faced with more and more building demolitions these years. This project aims to show all the demolitions by year.
+        </p>
+        <p>This application shows each dot color coded based on years of
+        demolition start time. To know more information about the building, click on that dot on the map.</p>
+        <p>After you click the dot, those dots with similar demolition years will also show on the map.</p>
+      </div>
+      <div id="results" style="display: none;">
+        <h1 class="year">Building Demolition</h1>
+        <p class="main">This Building is<span class="year">
+        UPenn Dining Hall</span>.</p>
+        <p>Its demolition stars at year<span class="year">
+        2016</span>. For more information, please search it on Chrome</p>
+        <p> <a href="https://www.google.com/maps" title="_top" style="text-decoration:none; color:lightblue">Google Maps Here</a> </p>
+      </div>
+    </div>
+    <!-- Map -->
+    <div id="map" class="map">
+      <div class="button">
+        <button style="font-size:16px" onclick="closeResults();"> Return <i class="fa fa-undo"></i></button>
+      </div>
+<!-- Required Goal 5-->
+      <div class="legend" style="padding: 10px;">
+        <h2> Demolition Year </h2> <hr>
+        <p class="before2014" style="text-align: center;">Before 2014   </p>
+        <p class="2014" style="text-align: center;">2014  </p>
+        <p class="2015" style="text-align: center;">2015  </p>
+        <p class="2016" style="text-align: center;">2016  </p>
+        <p class="after2016" style="text-align: center;">After 2016</p>
+      </div>
+    </div>
+    <!-- Legend -->
+    <script src="js/jquery-2.2.0.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/midtermFunctions.js"></script>
+  </body>
+</html>
