@@ -28,7 +28,24 @@ p.main {
 }
 
 .legend {
-  position: absolute;
-  background-color: #fff;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 2000;
+  width: 200px;
+  height: 260px;
+  bottom : 20px;
+  right: 20px;
+  color: white;
 }
+.button {
+  z-index: 1999;
+  position: fixed;
+  top:20px;
+  right: 20px;
+}
+
+.MON { border: 3px solid #0000FF;}
+.TUE { border: 3px solid #E18E2E;}
+.WED { border: 3px solid #9E0508;}
+.THU { border: 3px solid #FBDB0C;}
+.FRI { border: 3px solid #7B3F00;}

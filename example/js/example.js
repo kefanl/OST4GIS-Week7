@@ -119,8 +119,8 @@ var onStringFilterChange = function(e) {
   filterAndPlot();
 };
 
-var onSelectChange = function() {
-  selectValue = e.target.value;
+var onSelectChange = function(e) {
+  selectValue = e.target.value; //give the value of the change
   filterAndPlot();
 };
 

@@ -21,7 +21,7 @@ var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{
 
 Load the dataset into our application. Set the 'dataset' variable to the address for
 'philadelphia-garbage-collection-boundaries.geojson' in the class dataset repository
-https://raw.githubusercontent.com/CPLN-692-401/datasets/master/geojson/philadelphia-garbage-collection-boundaries.geojson
+
 
 You should now have GeoJSON data projected onto your map!
 
@@ -125,12 +125,18 @@ of the application to report this information.
 
 ===================== */
 
-var dataset = ""
+var dataset = "https://raw.githubusercontent.com/CPLN-692-401/datasets/master/geojson/philadelphia-garbage-collection-boundaries.geojson";
 var featureGroup;
 
 var myStyle = function(feature) {
-  return {};
-};
+  switch (feature.properties.COLLDAY) {
+    case 'MON':   return {color: "#0000FF"};
+    case 'TUE':   return {color: "#E18E2E"};
+    case 'WED':   return {color: "#9E0508"};
+    case 'THU':   return {color: "#FBDB0C"};
+    case 'FRI':   return {color: "#7B3F00"};
+    case ' ': return {color: "#2B2B2B"}
+}};
 
 var showResults = function() {
   /* =====================
@@ -144,22 +150,33 @@ var showResults = function() {
   // => <div id="results">
   $('#results').show();
 };
+// Stretch Goal 8
+var closeResults = function() {
+  $('#intro').show();
+  $('#results').hide();
+  map.setView([40.000, -75.1090], 11);
+};
 
 
 var eachFeatureFunction = function(layer) {
-  layer.on('click', function (event) {
-    /* =====================
-    The following code will run every time a layer on the map is clicked.
-    Check out layer.feature to see some useful data about the layer that
-    you can use in your application.
-    ===================== */
-    console.log(layer.feature);
+  layer.on('click', function(event) {
     showResults();
+    switch(layer.feature.properties.COLLDAY) {
+      case 'MON':   $('.day-of-week').text('Monday'); break;
+      case 'TUE':   $('.day-of-week').text('Tuesday'); break;
+      case 'WED':   $('.day-of-week').text('Wednesday'); break;
+      case 'THU':   $('.day-of-week').text('Thursday'); break;
+      case 'FRI':   $('.day-of-week').text('Friday'); break;
+    };
+// Streach Goal 7
+    map.fitBounds(event.target.getBounds(layer.feature.geometry.coordinates),);
   });
 };
 
+
 var myFilter = function(feature) {
-  return true;
+  if (feature.properties.COLLDAY == ' ') { return false;}
+  else {return true;}
 };
 
 $(document).ready(function() {
@@ -169,7 +186,6 @@ $(document).ready(function() {
       style: myStyle,
       filter: myFilter
     }).addTo(map);
-
     // quite similar to _.each
     featureGroup.eachLayer(eachFeatureFunction);
   });
